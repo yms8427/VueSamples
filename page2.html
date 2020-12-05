@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alıştırmalar</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Bilge Adam</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Ana Sayfa</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="page2.html">Bilgiler</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="modal.html">Modal</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="flex-shrink-0 mt-5">
+      <div class="container mt-5" id="app">
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label>Adı</label>
+              <input class="form-control" v-model="firstName" />
+            </div>
+            <div class="form-group">
+              <label>Soyadı</label>
+              <input class="form-control" v-model="lastName" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="js/page2.js"></script>
+  </body>
+</html>

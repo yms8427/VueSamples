@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alıştırmalar</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+    <style>
+      .debug {
+        border: 1px solid #f00;
+      }
+      .ba-modal {
+        -webkit-box-shadow: 0px 0px 10px 0px #000000;
+        box-shadow: 0px 0px 10px 0px #000000;
+        position: relative;
+        border-radius: 5px;
+        z-index: 1041;
+        background-color: #fff;
+      }
+      .ba-modal span.close {
+        font-weight: bold;
+        position: absolute;
+        right: 15px;
+        top: 5px;
+      }
+      .ba-modal span.close:hover {
+        cursor: pointer;
+        color: #5f0b0b;
+      }
+      .ba-modal .row {
+        margin: 0;
+      }
+      .ba-modal-overlay {
+        position: fixed;
+        background-color: #333;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.8;
+        z-index: 1040;
+      }
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.5s cubic-bezier(0.01, 1, 0.92, -0.04);
+      }
+
+      .fade-enter-from,
+      .fade-leave-to {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Bilge Adam</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Ana Sayfa</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="page2.html">Bilgiler</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="modal.html">Modal</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="flex-shrink-0 mt-5">
+      <div class="container mt-5" id="app">
+        <button :title="infoTitle" class="btn btn-primary" v-on:click="showInfo">
+          Bilgilendir
+        </button>
+        <button class="btn btn-warning ml-2" v-on:click="showWarning">
+          Uyar
+        </button>
+        <button class="btn btn-danger ml-2" v-on:click="showError">Hata</button>
+        <ba-modal
+          ref="infoModal"
+          :title="infoTitle"
+          content="Kullanıcının yetkilendirilmesi süreci tamamlandı"
+          @on-confirmed="onInfoConfirmed"
+        >
+        </ba-modal>
+        <ba-modal
+          ref="warningModal"
+          title="Uyarı"
+          content="Kullanıcı yetkisi tanımlanamıyor."
+          @on-confirmed="onWarningConfirmed"
+        ></ba-modal>
+        <ba-modal
+          ref="errorModal"
+          title="Hata"
+          content="Yetki tanımlı değil"
+          @on-confirmed="onErrorConfirmed"
+        ></ba-modal>
+      </div>
+    </main>
+    <template id="modal-section">
+      <div class="ba-modal-overlay" v-if="show"></div>
+      <transition name="fade">
+        <div class="ba-modal" v-if="show">
+          <div class="row">
+            <div class="col">
+              <h2>{{title}}</h2>
+              <span class="close" v-on:click="close">x</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p>{{content}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col p-1">
+              <hr />
+              <button
+                class="btn btn-success float-right ml-2"
+                v-on:click="confirm"
+              >
+                Tamam
+              </button>
+              <button class="btn btn-danger float-right" v-on:click="close">
+                İptal
+              </button>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </template>
+    <script src="js/modal.js"></script>
+  </body>
+</html>
